@@ -1,0 +1,137 @@
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>첫 페이지</title>
+    <style>
+
+        .body {
+            display: flex;
+            width: fit-content;
+            margin: auto;
+        }
+
+        .img_title {
+            display: block;
+            margin: 10px;
+            margin-top: 15px;
+            text-align: center;
+            width: 100px;
+
+        }
+
+        .title {
+            font-family: 'Nanum Gothic', sans-serif;
+            overflow: hidden;
+            margin-top: 5px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+
+        .img {
+            width: 100px;
+        }
+
+        .weeklist {
+            width: auto;
+            margin: auto;
+            justify-content: center;
+            border: 0.3px solid;
+            border-color: lightgray;
+
+        }
+
+        .maintitle{
+            font-family: 'Nanum Gothic', sans-serif;
+            text-align: center;
+            margin: 50px;
+
+        }
+
+        .weekname {
+            font-family: 'Nanum Gothic', sans-serif;
+
+        }
+
+
+    </style>
+    <script>
+        $(document).ready(function () {
+            q1();
+        });
+
+        function q1() {
+            $.ajax({
+                type: "GET",
+                url: "/test",
+                data: {},
+                success: function (response) {
+                    let week = response[0]
+                    let title = response[1]
+                    let img = response[2]
+                    console.log(week)
+                    for (a = 0; a < 7; a++) {
+                        let temp_list = `
+                            <div class="weeklist" id="weeklist_${a}" style="float: left">
+                                <div class="weekname" >${week[a]}</div>
+                            </div>
+                        `
+                        $('#mainid').append(temp_list)
+                        for (i = 0; i < img[a].length; i++) {
+                            let temp_html_1 = `
+                            <div class="img_title" id="img_title_id">
+                                <img class="img" src=${img[a][i]}>
+                                <div class="title">${title[a][i]}</div>
+                            </div>
+                            `
+                            $('#' + 'weeklist_' + a).append(temp_html_1)
+                        }
+                    }
+
+
+                    // let temp_html = `
+                    //
+                    // `
+                    // $('#mainid').append(temp_html)
+                }
+            })
+        }
+
+    </script>
+</head>
+
+<body>
+
+<div>
+    <h3 class="maintitle">네이버 웹툰 크롤링 프로젝트</h3>
+</div>
+
+<div class="body">
+    <div class="main" id="mainid">
+
+    </div>
+</div>
+
+
+</body>
+</html>
