@@ -1,4 +1,4 @@
-from flask import Flask, send_file
+from flask import Flask, send_file, render_template, jsonify
 from bs4 import BeautifulSoup
 import requests
 import os
@@ -8,12 +8,55 @@ import zipfile
 
 app = Flask(__name__)
 
-@app.route('/')
-def download():
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
 
-    url = "https://comic.naver.com/webtoon/detail?titleId=780506&no=42&weekday=tue" # 화수 링크
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+data = requests.get('https://comic.naver.com/webtoon/weekday', headers=headers)
+soup = BeautifulSoup(data.text, 'html.parser')
+
+toontables = soup.select('#content > div.list_area.daily_all > div')
+
+img_lists = {}
+small_title_lists = {}
+
+week = {}
+
+idx = 0
+for toontable in toontables:
+    imgs = toontable.select('div > ul > li > div > a > img')
+    img_lists[idx] = imgs
+
+    small_titles = toontable.select('div > ul > li > div > a > img')
+    small_title_lists[idx] = small_titles
+
+    week[idx] = toontable.select_one('div > h4 > span').text
+
+    idx += 1
+
+small_title_list = [[], [], [], [], [], [], []]
+for i in range(0, 7):
+    for a in range(0, len(small_title_lists[i])):
+        small_title_list[i].append(small_title_lists[i][a]['alt'])
+
+img_list = [[], [], [], [], [], [], []]
+for i in range(0, 7):
+    for a in range(0, len(img_lists[i])):
+        img_list[i].append(img_lists[i][a]['src'])
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/main', methods=['GET'])
+def index_main():
+    return jsonify(week, small_title_list, img_list)
+
+
+@app.route('/download')
+def download():
+    url = "https://comic.naver.com/webtoon/detail?titleId=780506&no=42&weekday=tue"  # 화수 링크
     data = requests.get(url)
     soup = BeautifulSoup(data.text, 'html.parser')
 
@@ -46,6 +89,7 @@ def download():
                      mimetype='application/zip',
                      attachment_filename='./static/webtoon.zip',
                      as_attachment=True)
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
