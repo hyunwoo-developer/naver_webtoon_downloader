@@ -43,16 +43,29 @@ for i in range(0, 7):
     for a in range(0, len(img_lists[i])):
         img_list[i].append(img_lists[i][a]['src'])
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 @app.route('/main', methods=['GET'])
 def index_main():
     return jsonify(week, small_title_list, img_list)
 
+@app.route('/detail')
+def detail():
+    return render_template('detail.html')
+
+@app.route('/detail', methods=['GET'])
+def show_detail(id):
+    detail = list(db.mywebtoon.find({'id':id},{'_id':False}))
+    return jsonify({'detail':detail})
+
+@app.route('/detail', methods=['POST'])
+def select_page():
+    page_num_receive = request.form['page_num_give']
+    id_receive = request.form['id_give']
+    url="https://comic.naver.com/webtoon/detail?titleId="+id_receive+"&no="+page_num_receive
+    return jsonify({'url':url})
 
 @app.route('/download')
 def download():
