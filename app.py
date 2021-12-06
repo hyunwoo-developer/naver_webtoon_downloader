@@ -53,12 +53,18 @@ def index_main():
 
 @app.route('/detail')
 def detail():
-    return render_template('detail.html')
+    id = request.args.get("id")
+    detail = db.mywebtoon.find_one({'id': id})
 
-@app.route('/detail', methods=['GET'])
-def show_detail(id):
-    detail = list(db.mywebtoon.find({'id':id},{'_id':False}))
-    return jsonify({'detail':detail})
+    cat1, cat2 = detail['category_1'], detail['category_2']
+    title = detail['title']
+    author = detail['author']
+    thumbnailImgUrl = detail['thumbnailImgUrl']
+    pageUrl = detail['pageUrl']
+    desc = detail['desc']
+    backgroundImgUrl = detail['backgroundImgUrl']
+    recentPageNum = detail['recentPageNum']
+    return render_template('detail.html', cat1=cat1, cat2=cat2, title=title, author=author, thumbnailImgUrl=thumbnailImgUrl, pageUrl=pageUrl, desc=desc, backgroundImgUrl=backgroundImgUrl, recentPageNum=recentPageNum)
 
 @app.route('/detail', methods=['POST'])
 def select_detail():

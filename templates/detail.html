@@ -7,7 +7,7 @@
             name="viewport"
             content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
 
-    <!-- Reset CSS -->
+    <!-- Reset CSS(브라우저 기본 css reset) -->
     <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
@@ -18,11 +18,23 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
     />
 
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <!-- CSS -->
     <link rel="stylesheet" href="../static/detail.css">
+
+    <style>
+        .body__container {
+            background: url({{backgroundImgUrl}});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .section--card .image {
+            background: url({{thumbnailImgUrl}});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 
     <!-- JavaScript -->
     <script src="../static/detail.js"></script>
@@ -48,24 +60,26 @@
         </header>
 
         <section class="section section--card">
-            <div class="inner clearfix">
+            <div class="inner">
                 <div class="card__categorylist" id="category">
-                    <div class="card__category">스토리</div>
-                    <div class="card__category">판타지</div>
+                    <div class="card__category">{{cat1}}</div>
+                    <div class="card__category">{{cat2}}</div>
                 </div>
-                <div class="image float--left" id="image"></div>
-                <div class="text float--left" id="text">
-                    <div class="card__title" id="title">신의 탑</div>
-                    <div class="card__author" id="author">작가</div>
-                    <div class="card__desc" id="desc">자신의 모든 것이었던 소녀를 쫓아 탑에 들어온 소년 그리고 그런 소년을 시험하는 탑</div>
-                    <div class="card__download-form">
-                        <form method="post" id="selectForm">
-                            <select name="page" id="page">
-                                <option selected>원하시는 화를 선택해주세요</option>
-                                <option value=""></option>
-                            </select>
-                            <button type="button" class="btn" onclick="selectEpisode()">다운로드</button>
-                        </form>
+                <div class="card-box">
+                    <div class="image" id="image"></div>
+                    <div class="text" id="text">
+                        <div class="card__title" id="title">{{title}}</div>
+                        <div class="card__author" id="author">{{author}}</div>
+                        <div class="card__desc" id="desc">{{desc}}</div>
+                        <div class="card__download-form">
+                            <form method="post" id="select-form">
+                                <select name="page" id="page">
+                                    <option selected>원하시는 화를 선택해주세요</option>
+                                    <option value=""></option>
+                                </select>
+                                <button type="button" class="btn" onclick="selectEpisode()">다운로드</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

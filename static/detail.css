@@ -7,10 +7,6 @@
     font-size: 16px;
     font-weight: 400;
     color: #fff;
-    background: url("https://shared-comic.pstatic.net/thumb/webtoon/183559/thumbnail/thumbnail_IMAG06_b1272b70-7eb4-4c1e-bc08-50bf924e73be.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 100vh;
 }
 .body__container::before {
@@ -98,16 +94,16 @@ header .inner {
     border-radius: 4px;
     background: #808080;
 }
+.section--card .card-box {
+    display: flex;
+    flex-wrap: nowrap;
+}
 .section--card .image {
     width: 300px;
-    height: 200px;
     padding-top: 20px;
-    background: url("https://shared-comic.pstatic.net/thumb/webtoon/183559/thumbnail/thumbnail_IMAG06_b1272b70-7eb4-4c1e-bc08-50bf924e73be.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
 }
 .section--card .text {
+    width: 550px;
     margin-left: 30px;
 }
 .section--card .card__title {

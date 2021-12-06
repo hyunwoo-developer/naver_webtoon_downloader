@@ -28,6 +28,7 @@ for li in lis:
     category_1 = detail_soup.select_one('#content > div.comicinfo > div.detail > p.detail_info > span.genre').text.strip().split(',')[0]
     category_2 = detail_soup.select_one('#content > div.comicinfo > div.detail > p.detail_info > span.genre').text.strip().split(',')[1]
     desc = detail_soup.select_one('#content > div.comicinfo > div.detail > p:nth-child(2)').text
+    backgroundImgUrl = detail_soup.select_one('#content > div.comicinfo > div.thumb > a > img')['src']
     recentPageNum = detail_soup.select_one('td.title > a')['href'].split('&')[1].split('=')[1]
 
     doc = {
@@ -40,6 +41,7 @@ for li in lis:
         'thumbnailImgUrl' : thumbnailImgUrl,
         'pageUrl' : pageUrl,
         'desc' : desc,
-        'recent_page_num' : recentPageNum
+        'backgroundImgUrl' : backgroundImgUrl,
+        'recentPageNum' : recentPageNum
     }
     db.mywebtoon.insert_one(doc)
