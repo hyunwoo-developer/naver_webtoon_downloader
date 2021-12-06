@@ -1,9 +1,9 @@
 /*common*/
 @charset "UTF-8";
 
-/*common*/
 .body__container {
     width: 100%;
+    font-family: "Apple SD Gothic Neo";
     font-size: 16px;
     font-weight: 400;
     color: #fff;
@@ -127,3 +127,5 @@ header .inner {
     font-size: 16px;
     padding-bottom: 20px;
 }
+
+
