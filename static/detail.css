@@ -1,0 +1,129 @@
+/*common*/
+@charset "UTF-8";
+
+/*common*/
+.body__container {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+    background: url("https://shared-comic.pstatic.net/thumb/webtoon/183559/thumbnail/thumbnail_IMAG06_b1272b70-7eb4-4c1e-bc08-50bf924e73be.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.body__container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0,.8);
+}
+a {
+    text-decoration: none;
+}
+
+/*float clearfix*/
+.float--left {
+    float: left;
+}
+.float--right {
+    float: right;
+}
+.clearfix {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+/*button*/
+.btn {
+    display: block;
+    background: #6495ed;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 6px;
+    width: 300px;
+    height: 50px;
+}
+.btn:hover {
+    content: "";
+    background: #000;
+}
+
+/*input*/
+select {
+    display: block;
+    background: transparent;
+    color: #fff;
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 30px;
+}
+/*section inner*/
+.section {
+    position: relative;
+}
+.section .inner {
+    width: 980px;
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+    padding: 30px 30px;
+}
+/*header*/
+header .inner {
+    height: 100px;
+}
+/*card*/
+.section--card {
+    position: relative;
+}
+.section--card .card__categorylist {
+    padding-bottom: 20px;
+}
+.section--card .card__category{
+    display: inline;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 4px;
+    background: #808080;
+}
+.section--card .image {
+    width: 300px;
+    height: 200px;
+    padding-top: 20px;
+    background: url("https://shared-comic.pstatic.net/thumb/webtoon/183559/thumbnail/thumbnail_IMAG06_b1272b70-7eb4-4c1e-bc08-50bf924e73be.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.section--card .text {
+    margin-left: 30px;
+}
+.section--card .card__title {
+    display: inline-block;
+    font-size: 48px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+.section--card .card__author {
+    display: inline-block;
+    font-size: 32px;
+    color: #a9a9a9;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+.section--card .card__desc {
+    font-size: 16px;
+    padding-bottom: 20px;
+}

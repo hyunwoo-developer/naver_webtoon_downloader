@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
+
+    <!-- reset CSS -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+
+    <!-- font awesome -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/detail.css">
+
+    <!-- JavaScript -->
+    <script src="../static/detail.js"></script>
+    <title>상세 페이지</title>
+</head>
+
+<body>
+    <div class="body__container" id="body-container">
+        <header class="section">
+            <div class="inner clearfix">
+                <div class="menu-group float--left">
+                    <div class="previous">
+                        <a href="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fff"
+                                 class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                      d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="section section--card">
+            <div class="inner clearfix">
+                <div class="card__categorylist" id="category">
+                    <div class="card__category">스토리</div>
+                    <div class="card__category">판타지</div>
+                </div>
+                <div class="image float--left" id="image"></div>
+                <div class="text float--left">
+                    <div class="card__title" id="title">타이틀</div>
+                    <div class="card__author" id="author">작가</div>
+                    <div class="card__desc" id="desc">자신의 모든 것이었던 소녀를 쫓아 탑에 들어온 소년 그리고 그런 소년을 시험하는 탑</div>
+                    <div class="card__download-form">
+                        <form method="post">
+                            <select name="episode" id="episode">
+                                <option selected>원하시는 화를 선택해주세요</option>
+                            </select>
+                            <button type="button" class="btn" onclick="download()">다운로드</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="section">
+
+        </footer>
+    </div>
+
+</body>
+</html>
