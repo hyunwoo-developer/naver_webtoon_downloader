@@ -61,7 +61,7 @@ def show_detail(id):
     return jsonify({'detail':detail})
 
 @app.route('/detail', methods=['POST'])
-def select_page():
+def select_detail():
     page_num_receive = request.form['page_num_give']
     id_receive = request.form['id_give']
     url="https://comic.naver.com/webtoon/detail?titleId="+id_receive+"&no="+page_num_receive
