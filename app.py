@@ -72,50 +72,58 @@ def detail():
     desc = detail['desc']
     backgroundImgUrl = detail['backgroundImgUrl']
     recentPageNum = detail['recentPageNum']
-    return render_template('detail.html', cat1=cat1, cat2=cat2, title=title, author=author, thumbnailImgUrl=thumbnailImgUrl, pageUrl=pageUrl, desc=desc, backgroundImgUrl=backgroundImgUrl, recentPageNum=recentPageNum)
+    return render_template(
+                            'detail.html',
+                            id= id, cat1=cat1, cat2=cat2, title=title,
+                            author=author, thumbnailImgUrl=thumbnailImgUrl,
+                            pageUrl=pageUrl, desc=desc, backgroundImgUrl=backgroundImgUrl,
+                            recentPageNum=recentPageNum
+                            )
 
-# @app.route('/detail', methods=['POST'])
-# def select_detail():
-#     page_num_receive = request.form['page_num_give']
-#     id_receive = request.form['id_give']
-#     url="https://comic.naver.com/webtoon/detail?titleId="+id_receive+"&no="+page_num_receive
-#     return jsonify({'url':url})
-#
-# @app.route('/download')
-# def download():
-#     url = "https://comic.naver.com/webtoon/detail?titleId=780506&no=42&weekday=tue"  # 화수 링크
-#     data = requests.get(url)
-#     soup = BeautifulSoup(data.text, 'html.parser')
-#
-#     images = list(soup.select('img[alt="comic content"]'))
-#
-#     path = "./static/temp"
-#     if os.path.exists(path):
-#         shutil.rmtree(path)
-#     os.mkdir(path)
-#
-#     cnt = 1
-#     for image in images:
-#         req = Request(image['src'], headers=headers)
-#         image_read = urlopen(req).read()
-#
-#         image_open = open(path + "/" + str(cnt) + ".jpg", 'wb')
-#         image_open.write(image_read)
-#         image_open.close()
-#         cnt += 1
-#
-#     zip_file = zipfile.ZipFile("./static/webtoon.zip", "w")
-#     for file in os.listdir(path):
-#         if file.endswith(".jpg"):
-#             zip_file.write(os.path.join(path, file), compress_type=zipfile.ZIP_DEFLATED)
-#
-#     zip_file.close()
-#
-#     file_name = f"static/webtoon.zip"
-#     return send_file(file_name,
-#                      mimetype='application/zip',
-#                      attachment_filename='./static/webtoon.zip',
-#                      as_attachment=True)
+@app.route('/api/select', methods=['POST'])
+def select_episode():
+    id_receive = request.form['id_give']
+    episode_receive = request.form['episode_give']
+
+    base_url = "https://comic.naver.com/webtoon/detail?"
+    url = base_url + "titleId=" + id_receive + "&no=" + episode_receive
+    return jsonify({'url': url})
+
+@app.route('/download')
+def download():
+    url = "https://comic.naver.com/webtoon/detail?titleId=780506&no=42&weekday=tue"  # 화수 링크
+    data = requests.get(url)
+    soup = BeautifulSoup(data.text, 'html.parser')
+
+    images = list(soup.select('img[alt="comic content"]'))
+
+    path = "./static/temp"
+    if os.path.exists(path):
+        shutil.rmtree(path)
+    os.mkdir(path)
+
+    cnt = 1
+    for image in images:
+        req = Request(image['src'], headers=headers)
+        image_read = urlopen(req).read()
+
+        image_open = open(path + "/" + str(cnt) + ".jpg", 'wb')
+        image_open.write(image_read)
+        image_open.close()
+        cnt += 1
+
+    zip_file = zipfile.ZipFile("./static/webtoon.zip", "w")
+    for file in os.listdir(path):
+        if file.endswith(".jpg"):
+            zip_file.write(os.path.join(path, file), compress_type=zipfile.ZIP_DEFLATED)
+
+    zip_file.close()
+
+    file_name = f"static/webtoon.zip"
+    return send_file(file_name,
+                     mimetype='application/zip',
+                     attachment_filename='./static/webtoon.zip',
+                     as_attachment=True)
 
 
 if __name__ == '__main__':

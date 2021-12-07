@@ -18,6 +18,9 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
     />
 
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <!-- CSS -->
     <link rel="stylesheet" href="../static/detail.css">
 
@@ -73,11 +76,12 @@
                         <div class="card__desc" id="desc">{{desc}}</div>
                         <div class="card__download-form">
                             <form method="post" id="select-form">
-                                <select name="page" id="page">
+                                <input type="hidden" id="id" value="{{id}}"/>
+                                <input type="hidden" id="recentPageNum" value="{{recentPageNum}}"/>
+                                <select name="episode" id="episode">
                                     <option selected>원하시는 화를 선택해주세요</option>
-                                    <option value=""></option>
                                 </select>
-                                <button type="button" class="btn" onclick="selectEpisode()">다운로드</button>
+                                <button type="button" class="btn" onclick="select_episode()">다운로드</button>
                             </form>
                         </div>
                     </div>
