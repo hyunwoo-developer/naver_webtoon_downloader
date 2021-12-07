@@ -45,20 +45,24 @@ header .inner {
     border-bottom: 1px #000 solid;
 }
 /*list*/
+.section--list .list {
+    display: flex;
+    justify-content: space-around;
+}
 .section--list ul {
-    display: inline-block;
-    vertical-align: top;
-    width: 130px;
+
 }
 .section--list li {
-    margin-bottom: 10px;
-    width: 80px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+    width: 100px;
     text-align: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .section--list li:first-child {
-    font-size: 24px;
-    font-weight: bold;
-    font-style: italic;
+    font-size: 16px;
 }
 .section--list .item {
     position: relative;
@@ -68,7 +72,7 @@ header .inner {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    height: 80px;
+    height: 100px;
     border-radius: 10px;
     font-weight: bolder;
     color: transparent;

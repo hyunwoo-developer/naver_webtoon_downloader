@@ -18,7 +18,7 @@ function showAll() {
                 html = `
                         <li class="item">
                             <a href="/detail?id=${id}">
-                                <div class="item__thumbnail" style="background-image: url(${thumbnailImgUrl})">
+                                <div class="item__thumbnail" style="background-image: url(${thumbnailImgUrl});background-repeat: no-repeat;background-size: cover;background-position: center">
                                     <div class="item__title">${title}</div>
                                 </div>
                             </a>
