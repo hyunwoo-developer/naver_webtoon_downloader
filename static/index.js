@@ -17,9 +17,10 @@ function showAll() {
 
                 html = `
                         <li class="item">
-                            <a class="item__thumbnail" href="/detail?id=${id}">
-                                <img class="thumbnail__img" src="${thumbnailImgUrl}"/>
-                                <div class="thumbnail__title">${title}</div>
+                            <a href="/detail?id=${id}">
+                                <div class="item__thumbnail" style="background-image: url(${thumbnailImgUrl})">
+                                    <div class="item__title">${title}</div>
+                                </div>
                             </a>
                         </li>
                         `
