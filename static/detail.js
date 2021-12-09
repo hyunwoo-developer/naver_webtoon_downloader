@@ -21,6 +21,7 @@ function select_episode() {
         url: '/api/select',
         data: {id_give: id, episode_give: episode},
         success: function (response) {
+            alert(response['msg'])
         }
     });
 }
