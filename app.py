@@ -109,7 +109,7 @@ def select_episode():
         image_open.close()
         cnt += 1
 
-    zip_file = zipfile.ZipFile("../webtoon/webtoon.zip", "w")
+    zip_file = zipfile.ZipFile("./static/temp/webtoon.zip", "w")
     for file in os.listdir(path):
         if file.endswith(".jpg"):
             zip_file.write(os.path.join(path, file), compress_type=zipfile.ZIP_DEFLATED)
