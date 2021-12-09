@@ -1,4 +1,4 @@
-from flask import Flask, send_file, render_template, jsonify
+from flask import Flask, send_file, render_template, jsonify, request
 from bs4 import BeautifulSoup
 import requests
 import os
@@ -57,7 +57,7 @@ def detail():
 
 @app.route('/detail', methods=['GET'])
 def show_detail(id):
-    detail = list(db.mywebtoon.find({'id':id},{'_id':False}))
+    # detail = list(db.mywebtoon.find({'id':id},{'_id':False}))
     return jsonify({'detail':detail})
 
 @app.route('/detail', methods=['POST'])
